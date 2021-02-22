@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="employee_view_inherit_id">
+        <field name="name">employee.view.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="priority" eval="10"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='job_title']" position="attributes">
+                <attribute name="required">True</attribute>
+            </xpath>
+            <xpath expr="//field[@name='job_title']" position="after">
+                <field name="id_card_number" placeholder="ID Card Number"/>
+            </xpath>
+            <xpath expr="//field[@name='mobile_phone']" position="before">
+                <field name="date_of_commencement"/>
+            </xpath>
+            <xpath expr="//field[@name='parent_id']" position="after">
+
+
+                <field name="total_hours_worked"/>
+
+                <label for="annual_leave"/>
+                <div class="o_row">
+                    <field name="annual_leave"/>
+                    <span><b>Payment</b></span>
+                    <field name="annual_leave_payment" nolabel="1"/>
+                </div>
+
+                <label for="sick_leave"/>
+                <div class="o_row">
+                    <field name="sick_leave"/>
+                    <span><b>Payment</b></span>
+                    <field name="sick_leave_payment" nolabel="1"/>
+                </div>
+
+                <label for="maternity_leave"/>
+                <div class="o_row">
+                    <field name="maternity_leave"/>
+                    <span><b>Payment</b></span>
+                    <field name="maternity_leave_payment" nolabel="1"/>
+                </div>
+
+                <label for="paternity_leave"/>
+                <div class="o_row">
+                    <field name="paternity_leave"/>
+                    <span><b>Payment</b></span>
+                    <field name="paternity_leave_payment" nolabel="1"/>
+                </div>
+
+                <label for="holidays"/>
+                <div class="o_row">
+                    <field name="holidays"/>
+                    <span><b>Payment</b></span>
+                    <field name="holidays_payment" nolabel="1"/>
+                </div>
+
+            </xpath>
+            <xpath expr="//field[@name='work_location']" position="after">
+                <label for="year_end_payment_amount"/>
+                <div class="o_row">
+                    <field name="year_end_payment_amount"/>
+                    <span><b>Period</b></span>
+                    <field name="year_end_payment_period" nolabel="1"/>
+                </div>
+                <field name="notice_period"/>
+                <field name="date_of_termination"/>
+                <label for="wage_period"/>
+                <div class="o_row">
+                    <field name="wage_period"/>
+                    <span><b>Paid</b></span>
+                    <field name="wages_paid_in_period" nolabel="1"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
