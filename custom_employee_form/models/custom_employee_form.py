@@ -25,3 +25,23 @@ class CustomEmployeeForm(models.Model):
     year_end_payment_period = fields.Integer("Period")
     notice_period = fields.Char("Period of Notice", required=True)
     date_of_termination = fields.Date("Date of Termination of Contract", required=True)
+    dummy_overtime = fields.Float(string="Over Time", compute='_dummy_overtime')
+
+    def _dummy_overtime(self):
+        for rec in self:
+            timesheet = self.env['account.analytic.line'].search([('employee_id', '=', rec.id)])
+            total_days = 0
+            days_list = []
+            total_time = 0.0
+            # overtime = 0.0
+
+            for line in timesheet:
+                days_list.append(line.date)
+                total_time += line.unit_amount
+                # overtime += line.overtime
+            # rec.dummy_overtime = overtime
+            total_days = len(set(days_list))
+            normal_time = total_days * 8
+            rec.dummy_overtime = total_time - normal_time
+
+

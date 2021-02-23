@@ -71,6 +71,12 @@
                     <span><b>Paid</b></span>
                     <field name="wages_paid_in_period" nolabel="1"/>
                 </div>
+                <label for="dummy_overtime"/>
+                <div class="o_row">
+                    <field name='dummy_overtime'/>
+                    <span>Hours</span>
+                </div>
+
             </xpath>
         </field>
     </record>
